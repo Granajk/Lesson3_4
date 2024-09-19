@@ -9,7 +9,7 @@ Time_::Time_()
     hours = info->tm_hour;
     minutes = info->tm_min;
     seconds = info->tm_sec;
-    format = false;
+    format = true;
     delete info;
 }
 
@@ -21,10 +21,6 @@ Time_::Time_(int hours, int minutes, int seconds, bool format)
     this->format = format;
 }
 
-Time_::Time_(const Time_& obj)//?
-{
-
-}
 
 
 void Time_::setHour(int hours)
@@ -240,7 +236,7 @@ Time_& Time_::operator-=(int s)
 
 Time_& Time_::operator+=(float m)
 {
-    for (int i = 0; i < minutes; i++)
+    for (int i = 0; i < (minutes * 60); i++)
     {
         this->tickTime();
     }return *this;
@@ -248,7 +244,7 @@ Time_& Time_::operator+=(float m)
 
 Time_& Time_::operator-=(float m)
 {
-    for (int i = 0; i < minutes; i++)
+    for (int i = 0; i < (minutes * 60); i++)
     {
         this->untickTime();
     }return *this;
@@ -256,7 +252,7 @@ Time_& Time_::operator-=(float m)
 
 Time_& Time_::operator+=(double h)
 {
-    for (int i = 0; i < hours; i++)
+    for (int i = 0; i < (hours * 3600); i++)
     {
         this->tickTime();
     }return *this;
@@ -264,7 +260,7 @@ Time_& Time_::operator+=(double h)
 
 Time_& Time_::operator-=(double h)
 {
-    for (int i = 0; i < hours; i++)
+    for (int i = 0; i < (hours * 3600); i++)
     {
         this->untickTime();
     }return *this;
@@ -367,7 +363,7 @@ istream& operator>>(istream& is, Time_& t)
 {
     do
     {
-        cout << "(24-hours)true/false(12-hours) hh mm ss: ";
+        cout << "(24-hours)1/0(12-hours) hh mm ss: ";
         is >> t.format >> t.hours >> t.minutes >> t.seconds;
     } while (!t.valid());
     return is;

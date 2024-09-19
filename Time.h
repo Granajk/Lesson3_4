@@ -12,7 +12,7 @@ class Time_
 public:
 	Time_(); // Current local time
 	Time_(int hours, int minutes, int seconds = 0, bool format = true);
-	Time_(const Time_& obj); //?? копирование
+
 
 	void setHour(int hours);
 	int getHour()const;
