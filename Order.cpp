@@ -2,10 +2,18 @@
 
 Order::Order()
 {
+    
 }
 
 Order::Order(string info, float price, int readyMinuts)
 {
+    orderTime = Time_();
+    orderDate = Date();
+    numberOfOrder = ++counter;
+    this->price = price;
+    this->info = info;
+    this->readyMinuts = readyMinuts;
+
 }
 
 Date Order::getOrderDate() const
@@ -35,10 +43,10 @@ float Order::getPrice() const
 
 int Order::getNumberOfOrder() const
 {
-    return 0;
+    return numberOfOrder;
 }
 
 Time_ Order::getReadyOrderTime() const
 {
-    return Time_();
+    return orderTime + (float)readyMinuts;
 }
